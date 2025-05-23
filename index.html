@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramaraju Kanumuri - Data Analytics Professional</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            animation: slideDown 0.8s ease-out;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header .subtitle {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #555;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item:hover {
+            color: #667eea;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.4s; }
+        .section:nth-child(4) { animation-delay: 0.6s; }
+        .section:nth-child(5) { animation-delay: 0.8s; }
+        .section:nth-child(6) { animation-delay: 1.0s; }
+        .section:nth-child(7) { animation-delay: 1.2s; }
+
+        .section h2 {
+            color: #2c3e50;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #764ba2;
+        }
+
+        .education-item, .experience-item, .project-item {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%);
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .education-item:hover, .experience-item:hover, .project-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.15);
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .item-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .item-date {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .item-subtitle {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .coursework {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-category {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-category h3 {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .skill-tag {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .responsibilities {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .responsibilities li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #555;
+        }
+
+        .responsibilities li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-size: 0.8rem;
+        }
+
+        /* Contact Form Styles */
+        .contact-form-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-intro {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .contact-form {
+            background: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px auto 0;
+            min-width: 180px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .form-success {
+            text-align: center;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .form-success i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .form-success h3 {
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .form-success p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .form-error {
+            text-align: center;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .form-error i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .form-error h3 {
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .form-error p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .retry-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .retry-btn:hover {
+            background: white;
+            color: #e74c3c;
+        }
+
+        .nav-dots {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            margin: 10px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-dot.active {
+            background: #667eea;
+            transform: scale(1.3);
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .shape:nth-child(3) {
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+
+            .item-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-dots {
+                display: none;
+            }
+
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-shapes">
+        <div class="shape">🔵</div>
+        <div class="shape">🔷</div>
+        <div class="shape">🔶</div>
+    </div>
+
+    <div class="nav-dots">
+        <div class="nav-dot active" data-section="0"></div>
+        <div class="nav-dot" data-section="1"></div>
+        <div class="nav-dot" data-section="2"></div>
+        <div class="nav-dot" data-section="3"></div>
+        <div class="nav-dot" data-section="4"></div>
+        <div class="nav-dot" data-section="5"></div>
+    </div>
+
+    <div class="container">
+        <header class="header" id="section-0">
+            <h1>Ramaraju Kanumuri</h1>
+            <p class="subtitle">Data Analytics Professional & Business Intelligence Specialist</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>ramarajuk91@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+1 (774)-535-1013</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Worcester, MA</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-linkedin"></i>
+                    <span>LinkedIn Profile</span>
+                </div>
+            </div>
+        </header>
+
+        <section class="section" id="section-1">
+            <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+            
+            <div class="education-item">
+                <div class="item-header">
+                    <div>
+                        <div class="item-title">Worcester Polytechnic Institute (WPI)</div>
+                        <div class="item-subtitle">Master of Science in Business Analytics</div>
+                    </div>
+                    <div class="item-date">May 2026</div>
+                </div>
+                <div class="coursework">
+                    <strong>Relevant Coursework:</strong> Business Intelligence, Data Management for Analytics, Operations Management, Performance Analytics, Risk Management and Decision making, Business Applications in Machine Learning
+                </div>
+            </div>
+
+            <div class="education-item">
+                <div class="item-header">
+                    <div>
+                        <div class="item-title">Acharya Nagarjuna University, Guntur, India</div>
+                        <div class="item-subtitle">Bachelor of Commerce (Computer Applications)</div>
+                    </div>
+                    <div class="item-date">Dec 2022</div>
+                </div>
+                <div class="coursework">
+                    <strong>Relevant Coursework:</strong> Accounting, Business Analytics, Business Statistics, Analytics Skills, Data Base Management System, Web Technology, Marketing, Information and Communication Technology
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="section-2">
+            <h2><i class="fas fa-cogs"></i> Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Data Analytics</h3>
+                    <div class="skills-list">
+                        <span class="skill-tag">Advanced Excel</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Tableau</span>
+                        <span class="skill-tag">Power BI</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">PyCharm</span>
+                        <span class="skill-tag">Statistical Analytics</span>
+                        <span class="skill-tag">Regression Analysis</span>
+                        <span class="skill-tag">Time Series Analysis</span>
+                        <span class="skill-tag">Excel Macros</span>
+                        <span class="skill-tag">Excel Solver</span>
+                        <span class="skill-tag">Report Building</span>
+                        <span class="skill-tag">Visual Basics</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="section-3">
+            <h2><i class="fas fa-briefcase"></i> Professional Experience</h2>
+
+            <div class="experience-item">
+                <div class="item-header">
+                    <div>
+                        <div class="item-title">Data Analyst - WPI Business School</div>
+                        <div class="item-subtitle">Worcester Polytechnic Institute, Worcester, MA</div>
+                    </div>
+                    <div class="item-date">Aug 2024 - Present</div>
+                </div>
+                <ul class="responsibilities">
+                    <li>Analyzing, monitoring actual payroll expenses against payroll budget and report on variance and generating periodical reports to facilitate decision making</li>
+                    <li>Utilized advanced excel tools to create pivot tables and reporting dashboards to monitor payroll spend dynamically</li>
+                    <li>Coordinated student recruitment process on JOBX portal streamlined steps of hiring process for enhanced student experience</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="item-header">
+                    <div>
+                        <div class="item-title">Graduate Teaching Assistant – Data Analysis for Decision Making & Business Intelligence</div>
+                        <div class="item-subtitle">Worcester Polytechnic Institute</div>
+                    </div>
+                    <div class="item-date">Jan 2025 - Mar 2025</div>
+                </div>
+                <ul class="responsibilities">
+                    <li>Assisted Professor Marco Bonilla with assignment design, Canvas course management, and student engagement support for the Business Intelligence course</li>
+                    <li>Graded coursework and provided tutoring in Excel data analysis, including Pivot Tables, VLOOKUP, Data Validation, Regression, and chart creation</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="item-header">
+                    <div>
+                        <div class="item-title">Graduate Teaching Assistant – Business Intelligence</div>
+                        <div class="item-subtitle">Worcester Polytechnic Institute</div>
+                    </div>
+                    <div class="item-date">Mar 2025 - May 2025</div>
+                </div>
+                <ul class="responsibilities">
+                    <li>Assisted in course delivery by setting up Tableau dashboards, grading assignments, and supporting students with Business Intelligence tools and concepts</li>
+                    <li>Applied Python, LDA models, and sentiment analysis techniques to interpret public sentiment and support course-related analytical tasks</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="item-header">
+                    <div>
+                        <div class="item-title">Payroll Processor</div>
+                        <div class="item-subtitle">FMS Solutions India Pvt. Ltd., Hyderabad, India</div>
+                    </div>
+                    <div class="item-date">Jan 2023 - Jul 2024</div>
+                </div>
+                <ul class="responsibilities">
+                    <li>US Payroll Transitions (5), Canada Payroll</li>
+                    <li>Processing employee payroll Time Sheets, Employee Maintenance, Garnishments, Deductions & Child supports</li>
+                    <li>Allocating tasks and conducting peer work reviews in the form of acting as an auditor</li>
+                    <li>Maintaining records, generating reports for decision-making processes for clients, which leads to reduce the processing time by 30%</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section" id="section-4">
+            <h2><i class="fas fa-project-diagram"></i> Key Projects</h2>
+
+            <div class="project-item">
+                <div class="item-header">
+                    <div class="item-title">End-to-End Data Management for Healthcare Analytics Using SQL and Python</div>
+                    <div class="item-date">Jan 2025 - May 2025</div>
+                </div>
+                <ul class="responsibilities">
+                    <li>Developed a data management solution for a healthcare dataset using SQL, Excel, and Python to clean, transform, and prepare data for analytics and machine learning</li>
+                    <li>Implemented data profiling, quality assessment, and data integrity validation techniques to ensure accurate and ethical data usage aligned with organizational decision-making needs</li>
+                    <li>Executed end-to-end data wrangling and visualization using Python, including clustering, regression, and dimensionality reduction, to uncover insights and support business recommendations in the healthcare domain</li>
+                </ul>
+            </div>
+
+            <div class="project-item">
+                <div class="item-header">
+                    <div class="item-title">ML-Driven Bankruptcy Prediction Model for Investment Banking Using Python, AutoML and DataRobot</div>
+                    <div class="item-date">Jan 2025 - May 2025</div>
+                </div>
+                <ul class="responsibilities">
+                    <li>Built a bankruptcy prediction model to help investment firms identify high-risk companies early</li>
+                    <li>Enabled data-driven risk segmentation and advisory insights using XGBoost and feature engineering</li>
+                    <li>Learned practical AutoML workflows, financial feature design, and model evaluation on imbalanced data</li>
+                </ul>
+            </div>
+
+            <div class="project-item">
+                <div class="item-header">
+                    <div class="item-title">Business Intelligence – Uber Data Analytics using Tableau | Excel | Python</div>
+                    <div class="item-date">Aug 2024 - Dec 2024</div>
+                </div>
+                <ul class="responsibilities">
+                    <li>Analyzed Uber ride data to identify issues like driver unavailability and demand gaps, improving trip reliability and customer satisfaction through actionable insights</li>
+                    <li>Built Tableau dashboards to monitor KPIs including trip efficiency, revenue trends, and driver performance, enabling real-time decisions through interactive visuals and strategic business insights</li>
+                    <li>Used Excel tools and social media sentiment analysis to track ride trends and customer perceptions</li>
+                </ul>
+            </div>
+
+            <div class="project-item">
+                <div class="item-header">
+                    <div class="item-title">Operational Optimization of a Food Truck Using Forecasting, Inventory Control, and Lean Principles</div>
+                    <div class="item-date">Aug 2024 - Dec 2024</div>
+                </div>
+                <ul class="responsibilities">
+                    <li>Developed a data-driven strategy to enhance food truck efficiency and profitability</li>
+                    <li>Learned to apply forecasting models, inventory optimization, and lean tools practically</li>
+                    <li>Conducted demand analysis, capacity planning, EOQ & ROP calculations, and lean system design</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section" id="section-5">
+            <h2><i class="fas fa-envelope"></i> Contact Me</h2>
+            <div class="contact-form-container">
+                <p class="contact-intro">Interested in collaborating or have a question? I'd love to hear from you!</p>
+                
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="purpose">Purpose of Contact *</label>
+                        <select id="purpose" name="purpose" required>
+                            <option value="">Select a purpose</option>
+                            <option value="job-opportunity">Job Opportunity</option>
+                            <option value="freelance-project">Freelance Project</option>
+                            <option value="collaboration">Collaboration</option>
+                            <option value="consultation">Consultation</option>
+                            <option value="networking">Networking</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="company">Company/Organization</label>
+                        <input type="text" id="company" name="company">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Please describe your inquiry in detail..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <i class="fas fa-paper-plane"></i>
+                        Send Message
+                    </button>
+                </form>
+                
+                <div class="form-success" id="successMessage" style="display: none;">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Message Sent Successfully!</h3>
+                    <p>Thank you for reaching out. I'll get back to you within 24-48 hours.</p>
+                </div>
+
+                <div class="form-error" id="errorMessage" style="display: none;">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>Message Failed to Send</h3>
+                    <p>There was an error sending your message. Please try again or contact me directly at ramarajuk91@gmail.com</p>
+                    <button class="retry-btn" onclick="retryForm()">Try Again</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Initialize EmailJS with your public key
+        // You need to replace 'YOUR_PUBLIC_KEY' with your actual EmailJS public key
+        emailjs.init('YOUR_PUBLIC_KEY');
+
+        // Email configuration - replace with your actual service and template IDs
+        const EMAIL_CONFIG = {
+            serviceID: 'YOUR_SERVICE_ID',
+            templateID: 'YOUR_TEMPLATE_ID',
+            publicKey: 'YOUR_PUBLIC_KEY'
+        };
+
+        // Smooth scrolling for navigation dots
+        document.querySelectorAll('.nav-dot').forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                const section = document.getElementById(`section-${index}`);
+                section.scrollIntoView({ behavior: 'smooth' });
+                
+                // Update active dot
+                document.querySelectorAll('.nav-dot').forEach(d => d.classList.remove('active'));
+                dot.classList.add('active');
+            });
+        });
+
+        // Update active navigation dot on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('[id^="section-"]');
+            const scrollPosition = window.scrollY + 200;
+
+            sections.forEach((section, index) => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    document.querySelectorAll('.nav-dot').forEach(d => d.classList.remove('active'));
+                    document.querySelector(`[data-section="${index}"]`).classList.add('active');
+                }
+            });
+        });
+
+        // Add parallax effect to floating shapes
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const shapes = document.querySelectorAll('.shape');
+            
+            shapes.forEach((shape, index) => {
+                const speed = 0.5 + (index * 0.1);
+                shape.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Add intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections for animations
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Add hover effects to contact items
+        document.querySelectorAll('.contact-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.style.transform = 'scale(1.05)';
+            });
+            
+            item.addEventListener('mouseleave', () => {
+                item.style.transform = 'scale(1)';
+            });
+        });
+
+        // Add typing effect to the main title
+        const title = document.querySelector('.header h1');
+        const titleText = title.textContent;
+        title.textContent = '';
+        
+        let i = 0;
+        const typeWriter = () => {
+            if (i < titleText.length) {
+                title.textContent += titleText.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        };
+
+        // Start typing effect after page loads
+        window.addEventListener('load', () => {
+            setTimeout(typeWriter, 500);
+        });
+
+        // Contact form handling with EmailJS integration
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form elements
+            const submitBtn = document.getElementById('submitBtn');
+            const form = document.getElementById('contactForm');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Show loading state
+            const originalBtnContent = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+            
+            // Prepare template parameters for EmailJS
+            const templateParams = {
+                from_name: document.getElementById('name').value,
+                from_email: document.getElementById('email').value,
+                purpose: document.getElementById('purpose').value,
+                company: document.getElementById('company').value || 'Not specified',
+                message: document.getElementById('message').value,
+                to_email: 'ramarajuk91@gmail.com' // Your email where you want to receive messages
+            };
+            
+            // Send email using EmailJS
+            emailjs.send(EMAIL_CONFIG.serviceID, EMAIL_CONFIG.templateID, templateParams)
+                .then(function(response) {
+                    console.log('Email sent successfully:', response);
+                    
+                    // Hide form and show success message
+                    form.style.display = 'none';
+                    successMessage.style.display = 'block';
+                    errorMessage.style.display = 'none';
+                    
+                }, function(error) {
+                    console.error('Email failed to send:', error);
+                    
+                    // Show error message
+                    errorMessage.style.display = 'block';
+                    successMessage.style.display = 'none';
+                    
+                    // Reset button
+                    submitBtn.innerHTML = originalBtnContent;
+                    submitBtn.disabled = false;
+                });
+        });
+
+        // Function to retry form submission
+        function retryForm() {
+            document.getElementById('errorMessage').style.display = 'none';
+            document.getElementById('contactForm').style.display = 'block';
+        }
+
+        // Add form validation styling
+        document.querySelectorAll('input[required], select[required], textarea[required]').forEach(field => {
+            field.addEventListener('invalid', function() {
+                this.style.borderColor = '#e74c3c';
+                this.style.boxShadow = '0 0 0 3px rgba(231, 76, 60, 0.1)';
+            });
+            
+            field.addEventListener('input', function() {
+                if (this.validity.valid) {
+                    this.style.borderColor = '#4CAF50';
+                    this.style.boxShadow = '0 0 0 3px rgba(76, 175, 80, 0.1)';
+                } else {
+                    this.style.borderColor = '#e1e5e9';
+                    this.style.boxShadow = 'none';
+                }
+            });
+        });
+
+        // Initialize EmailJS on page load
+        window.addEventListener('load', function() {
+            // Check if EmailJS configuration is set up
+            if (EMAIL_CONFIG.serviceID === 'YOUR_SERVICE_ID' || 
+                EMAIL_CONFIG.templateID === 'YOUR_TEMPLATE_ID' || 
+                EMAIL_CONFIG.publicKey === 'YOUR_PUBLIC_KEY') {
+                
+                console.warn('EmailJS configuration not set up. Please update the EMAIL_CONFIG object with your actual EmailJS credentials.');
+                
+                // Show a notice to the user (optional)
+                const contactForm = document.getElementById('contactForm');
+                const notice = document.createElement('div');
+                notice.style.cssText = `
+                    background: #fff3cd;
+                    border: 1px solid #ffeaa7;
+                    color: #856404;
+                    padding: 15px;
+                    border-radius: 8px;
+                    margin-bottom: 20px;
+                    text-align: center;
+                `;
+                notice.innerHTML = '<strong>Notice:</strong> Email functionality is not yet configured. Please contact me directly at ramarajuk91@gmail.com';
+                contactForm.parentNode.insertBefore(notice, contactForm);
+            }
+        });
+    </script>
+</body>
+</html>
